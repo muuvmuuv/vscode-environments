@@ -1,10 +1,10 @@
+> https://github.com/microsoft/vscode/issues/114355
+
 Many developers do not only touch one language during their life so VS Code extensions and settings can get a real mess after some time, especially if you have two or more languages you deeply care about to have ideal environments and developer experience.
 
 I would like to present an idea about environments that hold extensions and settings for specific languages (identifiers).
 
-The performance increase is not huge (see [tests](#tests)) in this TypeScript project but it can be higher in other projects, it totally depends on activated global extensions. If e.g. you are a Go dev and try out React you would have an isolated environment from your Go settings, so nothing messes around and you can remove/uninstall stuff easier later (with a command like "Uninstall extensions from environment").
-
-Tell me what you think about it! :)
+The performance increase is not huge (see [tests](#tests)) in my example TypeScript project but it can be higher in other projects, it totally depends on activated global extensions. If e.g. you are a Go dev and try out React you would have an isolated environment from your Go settings, so nothing messes around and you can remove/uninstall stuff easier later (with a command like "Uninstall extensions from environment") and we could replace `"[python]": { }` for example.
 
 ### What would environments do and what are they?
 
