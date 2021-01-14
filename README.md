@@ -1,41 +1,24 @@
-Many developers do not only touch one language during their life so VS Code extensions and
-settings can get a real mess after some time, especially if you have two or more languages
-you deeply care about to have ideal environments and developer experience.
+Many developers do not only touch one language during their life so VS Code extensions and settings can get a real mess after some time, especially if you have two or more languages you deeply care about to have ideal environments and developer experience.
 
-I would like to present an idea about environments that hold extensions and settings for
-specific languages (identifiers).
+I would like to present an idea about environments that hold extensions and settings for specific languages (identifiers).
 
-The performance increase is not huge (see [tests](#tests)) in this TypeScript project but
-it can be higher in other projects, it totally depends on activated global extensions. If
-e.g. you are a Go dev and try out React you would have an isolated environment from your
-Go settings, so nothing messes around and you can remove/uninstall stuff easier later
-(with a command like "Uninstall extensions from environment").
+The performance increase is not huge (see [tests](#tests)) in this TypeScript project but it can be higher in other projects, it totally depends on activated global extensions. If e.g. you are a Go dev and try out React you would have an isolated environment from your Go settings, so nothing messes around and you can remove/uninstall stuff easier later (with a command like "Uninstall extensions from environment").
 
 Tell me what you think about it! :)
 
 ### What would environments do and what are they?
 
-You would install all extension you need globally like you do currently but then choose
-which are not ideally to use in a global scope or new workspace/project. For example Rust
-extensions when you are a frontend developer who mainly codes in JavaScript. Most
-extension wont activate in certain workspaces but still be loaded on startup.
+You would install all extension you need globally like you do currently but then choose which are not ideally to use in a global scope or new workspace/project. For example Rust extensions when you are a frontend developer who mainly codes in JavaScript. Most extension wont activate in certain workspaces but still be loaded on startup.
 
-After that you create a new environment (via command "Add new environment") and add VS
-Code settings and extension that you would like to activate explicitly for it.
+After that you create a new environment (via command "Add new environment") and add VS Code settings and extension that you would like to activate explicitly for it.
 
-VS Code will test each on startup and cache environment changes and their workspace. If
-either changes it will test again. This should speed up recuring start up times so it does
-not need to do identification tests again everytime. (wip)
+VS Code will test each on startup and cache environment changes and their workspace. If either changes it will test again. This should speed up recuring start up times so it does not need to do identification tests again everytime. (wip)
 
-The auto-detection can be disabled, so you choose an environment manually via "Select
-environment".
+The auto-detection can be disabled, so you choose an environment manually via "Select environment".
 
-Editing environments can be done through the standard VS Code settings panel or manually
-in a JSON format.
+Editing environments can be done through the standard VS Code settings panel or manually in a JSON format.
 
-Bonus: An option to async load an environment to apply settings/extensions. to speed up
-start up times. If it has extensions that require a reload it will reload after it has
-cached the environment or display a hint with a reload now button.
+Bonus: An option to async load an environment to apply settings/extensions. to speed up start up times. If it has extensions that require a reload it will reload after it has cached the environment or display a hint with a reload now button.
 
 The format for environments would be as follow:
 
@@ -86,8 +69,7 @@ The format for environments would be as follow:
 
 </details>
 
-> In my case it would reduce my extensions from 156 to 92 with builtin extensions in an
-> TypeScript project, see below.
+> In my case it would reduce my extensions from 156 to 92 with builtin extensions in an TypeScript project, see below.
 
 ### Benchmarks
 
@@ -114,11 +96,11 @@ Tests can vary. I tested through a example VS Code extensions launcher.
 4. Collected "Startup Performance" report
 5. Collected installed extensions through test extension
 
-| Setup                  | Startup time (ms) | Extensions load (ms) | Extensions count                                     | Description                                                    |
-| ---------------------- | ----------------- | -------------------- | ---------------------------------------------------- | -------------------------------------------------------------- |
-| Vanilla                | 3312              | 445                  | default                                              | No changes.                                                    |
-| Minimal                | 2543              | 372                  | [42](benchmarks/MinimalExtensions.md)                | Deactivated all extensions not related to web + go,rust,python |
-| Recommended Markdown   | 5772              | 4743                 | [86](benchmarks/RecommendedExtensions.md)            | Added some personal recommended extensions and settings        |
-| Recommended TypeScript | 6579              | 5423                 | [126](benchmarks/RecommendedTypeScriptExtensions.md) | above plus TypeScript/Angular stuff                            |
-| All TypeScript         | 6339              | 28188                | [156](benchmarks/AllExtensions.md)                   | All extensions activated + my extensions                       |
-| Only TypeScript        | 6120              | 13617                | [92](benchmarks/OnlyTypeScriptExtensions.md)         | What I would use only for TypeScript + Angular                 |
+| Setup | Startup time (ms) | Extensions load (ms) | Extensions count | Description |
+| --- | --- | --- | --- | --- |
+| Vanilla | 3312 | 445 | default | No changes. |
+| Minimal | 2543 | 372 | [42](benchmarks/MinimalExtensions.md) | Deactivated all extensions not related to web + go,rust,python |
+| Recommended Markdown | 5772 | 4743 | [86](benchmarks/RecommendedExtensions.md) | Added some personal recommended extensions and settings |
+| Recommended TypeScript | 6579 | 5423 | [126](benchmarks/RecommendedTypeScriptExtensions.md) | above plus TypeScript/Angular stuff |
+| All TypeScript | 6339 | 28188 | [156](benchmarks/AllExtensions.md) | All extensions activated + my extensions |
+| Only TypeScript | 6120 | 13617 | [92](benchmarks/OnlyTypeScriptExtensions.md) | What I would use only for TypeScript + Angular |
